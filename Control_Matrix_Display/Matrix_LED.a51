@@ -1,3 +1,8 @@
+; Progess: 
+	;- Xong duoc phan xuat tin hieu cho lan nhan dau tien
+	;- Chua code lan nhan thu 2 
+; Kho khan:
+	;- Gap nhieu van de RTC do co su dung transistor NPN de bao ve, nuoi den va khuech dai tin hieu
 ORG 0000h
 	ljmp RST_INT
 ORG 0030h
