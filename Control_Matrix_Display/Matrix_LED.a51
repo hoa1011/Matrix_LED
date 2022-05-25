@@ -141,7 +141,7 @@ ORG 0030h
 	
 	;delay
 	delay1s:
-	; su dung timer 1 che do 1
+	; su dung timer 0 che do 1
 	mov R6, #005h
 	loop5:
 	mov R5, #0C8h
