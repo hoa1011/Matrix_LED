@@ -1,4 +1,0 @@
-".\Objects\STARTUP.obj",
-".\Objects\Matrix_LED.obj" 
-TO ".\Objects\Matrix_LED" 
-PRINT(".\Listings\Matrix_LED.m51")
