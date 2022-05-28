@@ -1,20 +1,24 @@
-
 ORG 0000h
 	ljmp RST_INT
 ORG 0030h
 	;dung R0 luu gia tri hang, R1 luu gia tri cot, R2 luu so lan lap ham nhan nut
 	main_pro:
-	mov A,P2
-	anl A,#00000001b
-	cjne A,#00h, skip
-	lcall nhannut1
-	mov P0,R0
-	ljmp skip1
+	;-- Kiem tra xem co su bien dong dong gi cua tin hieu den cot hay khong (Dam bao cho viec hang truoc cot sau)
+	;-- Kiem tra lien tuc -> Muc dich xem co nhan nut xu ly hang cot khong
+	mov A,P2 ; Dua tin hieu port 2 vao thanh ghi A de xu ly
+	anl A,#00001111b ;AND thanh ghi A voi 0000 1111 de kiem tra xem co su thay doi o P2 khong
+	cjne A,#00h, skip ;co su thay doi P2(A khac 0) thi nhay sang ham skip de xu ly nut nhan cot
+	lcall nhannut1 ;goi ham nhan nut 1 nut nhan index hang
+	
+	mov P0,R0	; -- P0 = R0 dua gia tri chua trong thanh ghi R0 ra P0
+	ljmp skip1 ; nhay toi ham skip1 quay lai chuong trinh chinh kiem tra nut cot khong thi nhay toi ham nhan nut hang
 	skip:
 	lcall nhannut2
-	mov P2,R1	
+	mov P2,R1	; sau khi xu ly xong dua R1 ra P2
 	skip1:
 	ljmp main_pro
+	
+	;-- Cac ham xu ly nut nhan
 	
 	nhannut1:
 	mov A, 0B0h
@@ -48,30 +52,23 @@ ORG 0030h
 	cpl P2.0
 	lcall delay500ms
 	cjne A, #00001110b, two1
-	anl A, #00001000b
 	mov R0,#00001000b
 	clr A
 	ret
 	
 	two1:
 	cjne A, #00001101b, three1
-	anl A, #00001100b
 	mov R0, #00001100b
 	clr A
 	ret
 	
 	three1:
 	cjne A, #00001011b, four1
-	anl A, #00001000b
-	add A, #00000110b
 	mov R0, #00001110b
 	clr A
 	ret
 	
 	four1:
-	; 4: 0000 0111
-	anl A, #00000000b
-	add A, #00001111b
 	mov R0,#00001111b
 	clr A
 	ret
@@ -103,30 +100,23 @@ ORG 0030h
 	cpl P2.0
 	lcall delay500ms
 	cjne A, #00001110b, two2
-	anl A, #00001000b
 	mov R1,#10000000b
 	clr A
 	ret
 	
 	two2:
 	cjne A, #00001101b, three2
-	anl A, #00001100b
 	mov R1, #11000000b
 	clr A
 	ret
 	
 	three2:
 	cjne A, #00001011b, four2
-	anl A, #00001000b
-	add A, #00000110b
 	mov R1, #11100000b
 	clr A
 	ret
 	
 	four2:
-	; 4: 0000 0111
-	anl A, #00000000b
-	add A, #00001111b
 	mov R1, #11110000b
 	clr A
 	ret
@@ -181,3 +171,4 @@ ORG 0030h
 	ret
 
 END
+
