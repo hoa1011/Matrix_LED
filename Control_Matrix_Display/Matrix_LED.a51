@@ -1,5 +1,5 @@
 
-RG 0000h
+ORG 0000h
 	ljmp RST_INT
 ORG 0030h
 	;dung R0 luu gia tri hang, R1 luu gia tri cot, R2 luu so lan lap ham nhan nut
