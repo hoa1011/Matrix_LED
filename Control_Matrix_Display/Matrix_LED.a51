@@ -73,7 +73,7 @@ ORG 0030h
 	ret
 	
 
-	;-- sau khi nhan nut lan 1 ma sau 10s khong nhan nut lan 2
+	;-- sau khi nhan nut lan 1 ma sau 15s khong nhan nut lan 2
 	;-- tu dong RST lai trang thai ban dau cua he thong
 	nhannut2:
 	mov R2, #15
