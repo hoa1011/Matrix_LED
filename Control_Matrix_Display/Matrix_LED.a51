@@ -12,7 +12,7 @@ ORG 0030h
 	skip:
 	lcall nhannut2
 	
-	mov P0,R0
+	mov P1,R0
 	mov P2,R1
 
 	skip1:
